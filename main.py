@@ -1,16 +1,18 @@
-# This is a sample Python script.
+from png_parser import read_chunks
+from anonymizer import anonymize_png
+from fourier import show_fft_spectrum
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+if __name__ == "__main__":
+    input_file = "assets/goat.png"
+    output_file = "assets/goat_anonymized.png"
 
+    print("=== Original file ===")
+    read_chunks(input_file)
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+    print("\n=== Anonymizing... ===")
+    anonymize_png(input_file, output_file)
 
+    print("\n=== Anonymized file ===")
+    read_chunks(output_file)
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    show_fft_spectrum("assets/goat.png")
